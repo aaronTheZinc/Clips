@@ -4,17 +4,18 @@ const myCache = new NodeCache();
 class Cache {
     constructor() {
         
-        this.#didStart = false
+        this.didStart = false
     
     }
-    static createSessionCache = () =>{
+    createSessionCache = () =>{
         console.log("New Session Cache Has Started!")
+        this.didStart = true 
     }
 
     post = ({ data, key}) => {
         try {
 
-            myCache.set(key, )
+            myCache.set( key, data )
 
         } catch (error) {
             console.log(`Cache Error ${error}`)
@@ -35,4 +36,4 @@ class Cache {
 
 }
 
-module.exports = Cache
+module.exports = new Cache()

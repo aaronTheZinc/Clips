@@ -1,21 +1,16 @@
 const router = require('express').Router()
-
-router.get('/', (req, res) => {
-
-
-router.use('/api')
-    router.get('api', (req, res) => {
-            res.send('hi')
-    })
-    router.get('/socket',(req, res)=> {
-
-    })
-
-    res.send({
-        mes: 'Hello World'
-    })
+const rest_api = require('./rest')
+const webSocket = require('./socket')
+const session = require('../Session/index')
+const {authenticate} = require('./auth')
+router.use('/api', rest_api)
 
 
-})
+router.use( (req, res, next) => authenticate({
+    req: req,
+    res: res,
+    next: next
+}))
+
 
 module.exports = router

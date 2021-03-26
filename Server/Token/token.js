@@ -5,19 +5,20 @@ const uniqueString = require('unique-string');
 class Token {
     constructor({ token }) {
         this.CURRENT_TOKEN = token
-        this.cache  = new cache()
+        this.cache  = cache
         this.sessionTokens = new Array()
 
-        cache.createSessionCache()
+        
     }
 
-  token_create = ({ uid }) => {
+  token_create = ({ username, socket }) => {
      try {
+
         const token = uniqueString();
              
             this.cache.post({ 
                 key: token,
-                dara: uid
+                data: { username: username, socket: socket}
             })
             return {
                 token: token,
@@ -34,9 +35,9 @@ class Token {
 
     }
 
-    token_destroy = (token) => {
+    token_destroy = () => {
       try {  
-        this.cache.get()
+        this.cache.get(this.CURRENT_TOKEN)
 
       } catch(e) {
           return {
@@ -45,6 +46,17 @@ class Token {
 
           }
       }
+    }
+    token_retrieve = () => {
+        try {
+            const token = this.cache.get(this.CURRENT_TOKEN)
+                return token
+        } catch (e) {
+            return {
+                error: 'An Error Occured',
+                message: e
+            }
+        }
     }
 }
 module.exports = Token

@@ -1,0 +1,11 @@
+.chat-container {
+    margin: 0 auto;
+    display: inline;
+}
+.scroll {
+    height: 100vh;
+    overflow-y: auto;
+}
+.video-container {
+    padding-left:  10vw;
+}

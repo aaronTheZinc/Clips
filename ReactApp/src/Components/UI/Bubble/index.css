@@ -1,0 +1,28 @@
+.header-label {
+    font-size: 30px;
+    color: black;
+    font-weight: bolder;
+    text-align: left;
+}
+
+.text-label {
+    font-size: 15;
+    color: black;
+
+
+    
+}
+
+.bubble-container {
+    margin-top: 50px;
+    box-shadow: -1px -5px 42px 1px rgba(0,0,0,0.16);
+    width: 50%;
+    border-radius: 40px;
+    height: 15vh;
+    /* margin-left: 10%; */
+    padding: 20px;
+    margin-top: 10vh;
+    text-align: justify;
+
+
+}

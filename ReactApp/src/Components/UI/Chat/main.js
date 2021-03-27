@@ -8,7 +8,6 @@ import Content from './clips'
 class chat extends Component {
   constructor() {
     super();
-    this.chat = new chatHandler('aaronmarsh')
     this.state = {
       messageValue: '',
      

@@ -8,4 +8,9 @@
 }
 .video-container {
     padding-left:  10vw;
+    overflow-y:auto;
+}
+.video-cell {
+    padding-top: 10vh;
+    
 }

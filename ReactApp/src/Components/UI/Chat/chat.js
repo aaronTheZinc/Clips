@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import ChatContainer from '../Bubble/index'
-import ChatHandler from './chatHandler'
 import './index.css'
 import io from 'socket.io-client'
 const username = "aaronmarsh"
@@ -10,42 +9,33 @@ const socket = io("http://localhost:5000", {
 
 
 const Chat = () => {
-  const [users, setUsers] = useState([]);
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
-    socket.on("connect", () => {
-      socket.emit("username", 'aaronmarsh');
-    });
+  const [ state, setState ] = useState({ message: "", name: "" })
+	const [ chat, setChat ] = useState([])
+  const socketRef = useRef()
 
-    socket.on("users", users => {
-      setUsers(users);
-    });
-
-    socket.on("message", message => {
-      setMessages(message);
-      console.log()
-     
-    });
-
-    socket.on("connected", user => {
-      setUsers(users => [...users, user]);
-    });
-
-
-  }, []);
-
- 
+  useEffect(
+		() => {
+			socketRef.current = io.connect("http://localhost:5000")
+			socketRef.current.on("handShake", (token) => {
+				console.log(token)
+			})
+			return () => socketRef.current.disconnect()
+		},
+		[]
+	)
+const getSession = () => socketRef.current.emit("handShake", {username: "aaronmarsh"})
+  
   
   return (
     <>
     <div className='scroll'>
      {
-       messages.map(m => {
+       [].map(m => {
        return <ChatContainer text={m.text} header={m.header} />
        })
      }
+     <button onClick={()=> getSession()}>Hello</button>
      </div>
     
     </>

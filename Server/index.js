@@ -1,12 +1,20 @@
 const express = require('express')
 const app = express()
-const server = require("http").createServer();
+const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
-  transports: ["websocket", "polling"],
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  }
 });
+const cors = require("cors")
 const router = require('./Router/bundler')
 const session = require('./Session/index')
   app.use('/app', router)
+  app.use(cors)
+  
   app.get('/init_connection', (req, res) => {
 
     try {
@@ -30,33 +38,27 @@ const session = require('./Session/index')
 
       // 
 
+
 const users = {};
-io.on("connection", (client) => {
-  client.on("username", (username) => {
-    const user = {
-      name: username,
-      id: client.id,
-    };
-    console.log(user);
-    users[client.id] = user;
-    io.emit("connected", user);
-    io.emit("users", Object.values(users));
-  });
+io.on('connection', socket => {
 
-  client.on("send", (message) => {
-    const { text, sender } = message;
-    io.emit("message", data.friends);
-  });
 
-  client.on("disconnect", () => {
-    const username = users[client.id];
-    delete users[client.id];
-    io.emit("disconnected", client.id);
-  });
-});
+  socket.on('handShake', ({ username }) => {
+    console.log(username)
+    const SessionHandler = new session({clientTkn: ''})
+    const initializedToken = SessionHandler.session_init({username: username, socket: socket.id})
+    io.emit('handShake', initializedToken)
+  })
+
+
+
+})
 
 
 
 
-  app.listen(5000)
+  server.listen(5000, () => {
+      console.log('Server Spun Up')
+  })
+    
 

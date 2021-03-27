@@ -1,16 +1,35 @@
+
 .chat-container {
-    margin: 0 auto;
-    display: inline;
+  margin: 0 auto;
+  display: inline;
+  width: 50vw;
+  height: 100vh;
+
+  padding-top: 5vh;
+  width: 30vw;
+  height: 100vh;
+  overflow-y: scroll; /* Add the ability to scroll */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
 }
-.scroll {
-    height: 100vh;
-    overflow-y: auto;
+.chat-container::-webkit-scrollbar {
+    display: none;
 }
-.video-container {
-    padding-left:  10vw;
-    overflow-y:auto;
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.chat-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
-.video-cell {
-    padding-top: 10vh;
-    
-}
+
+.chat-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .chat-container::-webkit-scrollbar {
+      display: none;
+  }

@@ -1,0 +1,11 @@
+.container-main {
+    background-color:#0d0d0d;
+    width: 100vw;
+    height: 100vh;
+    display: inline-block;
+}
+.float-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: inline-block;
+}

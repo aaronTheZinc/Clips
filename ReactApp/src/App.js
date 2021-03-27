@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Main from "./Components/UI/Main/index"
 import Home from './Components/UI/Home/index'
+import './Components/UI/Theme/index.css'
 import  {
   BrowserRouter as Router,
   Switch,
@@ -12,14 +13,7 @@ import  {
 function App() {
   return (
     <div className="App">
-      <Router>
-       <Route path="/home">
-            <Main/>
-          </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
-          </Router>
+     <Main/>
         
     </div>
   );

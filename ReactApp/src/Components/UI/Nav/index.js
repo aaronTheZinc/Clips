@@ -4,9 +4,12 @@ import './index.css'
 import 'antd/dist/antd.css';
 
 export default () => (
+  <div className="site-page-header">
     <PageHeader
     className="site-page-header"
-    title="Chat"
-    subTitle="Talk With Friends"
+    title="Clips"
+    subTitle="Upload Your Clips"
   />
+  </div>
+
 )

@@ -1,0 +1,51 @@
+.chat-container {
+    margin: 0 auto;
+    display: inline;
+}
+.video-cell {
+    padding-top: 5vh;
+    margin-left: 0vw;
+}
+.scroll {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.video-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.video-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.video-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .video-container::-webkit-scrollbar {
+      display: none;
+  }
+  
+  .video-container {
+    
+    padding-top: 5vh;
+    width: 30vw;
+    height: 100vh;
+    overflow-y: scroll; /* Add the ability to scroll */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; 
+  }
+  .header-lbl {
+    font-family: Dela;
+}
+@font-face {
+    font-family: 'Dela';
+    src: url(../Fonts/DelaGothicOne-Regular.ttf)
+}

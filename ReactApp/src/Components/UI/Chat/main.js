@@ -55,6 +55,7 @@ componentDidMount() {
     const { messages } = this.state;
     return (
       <div className="chat-container">
+        <div className="scroll">
         {
             messages.map((message)=>
              <ChatBubble
@@ -62,7 +63,7 @@ componentDidMount() {
             text={message.text}
             />)
         }
-          
+          </div>
       </div>
     );
   }

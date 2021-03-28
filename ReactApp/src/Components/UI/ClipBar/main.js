@@ -11,9 +11,9 @@ export default class ClipsBar extends Component {
   render() {
     const { data } = this.state;
     return (
-      <div style={{ backgroundColor: "white", height: "100vh", borderRadius:'20px' }}>
+      <div style={{ backgroundColor: '#242424', height: "100vh", borderRadius:'20px' }}>
         <section style={{ marginTop: "3vh" }}>
-          <label className="header-lbl" style={{ fontSize: "70px", color: "black" }}>Clips</label>
+          <label className="header-lbl" style={{ fontSize: "70px", color: "white" }}>Clips</label>
         </section>
         <div className="video-container">
           {data.map((clip) => {

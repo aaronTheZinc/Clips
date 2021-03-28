@@ -1,0 +1,25 @@
+.searchBar {
+    width: 20vw;
+    height: 7vh;
+    outline: none;
+    border-radius:30px;
+    background-color: #242424;
+    text-align: center;
+    border-color: #242424;
+    margin-top: 5vh;
+    color: #fff;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+
+}
+.search-container {
+    display: inline;
+    background-color: #121212;
+    display: table;
+    margin: 0 auto;
+ 
+}
+.searchBar:hover {
+    top: -10px;
+  }

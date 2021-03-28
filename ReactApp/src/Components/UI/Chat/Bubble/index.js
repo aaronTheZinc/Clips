@@ -7,7 +7,7 @@ const index = ({ header, text }) => {
         <section style={{ marginLeft: "5vw" }}>
           <label className="header-label">{header}</label>
         </section>
-        <div style={{ marginTop: "2vh", marginLeft: "6vw" }}>
+        <div style={{ marginTop: "2vh", marginLeft: "6vw", color: 'white' }}>
           <p> {text} </p>
         </div>
         <div style={{ float: "right" }}>

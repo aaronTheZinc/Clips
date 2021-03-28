@@ -41,11 +41,11 @@ const session = require('./Session/index')
 
 const users = {};
 io.on('connection', socket => {
-
-console.log(cliend.id)
+  console.log(socket.id)
   socket.on('handShake', ({ username }) => {
     console.log(username)
     const SessionHandler = new session({clientTkn: ''})
+    console.log(username)
     const initializedToken = SessionHandler.session_init({username: username, socket: socket.id})
     io.emit('handShake', initializedToken)
   })

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import "./index.css";
-import { mg } from "../Assets/imageStr";
+import MG from '../Assets/MG.png'
 export default ({ onSearch, result }) => {
   return (
-    <div className="search-container">
-      <section style={{ float: "left" }}>
-        <input placeholder="Search" className="searchBar"></input>
-      </section>
-      <section>
-        <img src={mg} />
-      </section>
+    <div class="wrapper">
+    <div class="container">
+      <input type="text" class="input" placeholder="Find Friends"/>
+      <input type="button" value="GO" class="close-btn"/>
     </div>
+  </div>
   );
 };

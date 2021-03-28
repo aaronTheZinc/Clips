@@ -1,20 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import ClipBar from "../ClipBar/main";
-import ChatView from '../Chat/main'
-import SearchBar from '../SearchBar/index';
+import ChatView from "../Chat/main";
+import SearchBar from "../SearchBar/index";
+import { hub as Context } from "../../State/Context";
 import "./base.css";
-export default class index extends Component {
+class Hub extends Component {
+  constructor(props) {
+    super(props);
+    this.context = props.context;
+  }
+
   render() {
     return (
       <div className="container-main">
-        <div style={{textAlign: 'center', justifyContent: 'center'}}>
+        <div style={{ textAlign: "center", justifyContent: "center" }}>
           <SearchBar />
         </div>
         <div className="float-wrapper">
           <div style={{ float: "left" }}>
             <ClipBar />
           </div>
-          <div style={{ marginLeft: "40vw"}}>
+          <div style={{ marginLeft: "40vw", marginTop: "15vh" }}>
             <ChatView />
           </div>
         </div>
@@ -22,3 +28,9 @@ export default class index extends Component {
     );
   }
 }
+
+export default () => {
+  const context = useContext(Context);
+  console.log(context);
+  return <Hub context={context} />;
+};

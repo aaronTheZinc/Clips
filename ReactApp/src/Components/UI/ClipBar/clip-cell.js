@@ -5,7 +5,7 @@ export default ({}) => {
     <section className="video-cell">
 
       <img
-        src="https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        src="https://cdn2.unrealengine.com/Fortnite%2Fblog%2Fseason-9%2FS9Featured-1920x1080-15345e7d789c5c8a1bff7606809c2aafd629ac2d.jpg"
         style={{ borderRadius: "30px", width: "500px", height: "300px"}}
       />
     </section>

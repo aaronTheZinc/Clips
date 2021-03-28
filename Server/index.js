@@ -42,7 +42,7 @@ const session = require('./Session/index')
 const users = {};
 io.on('connection', socket => {
 
-
+console.log(cliend.id)
   socket.on('handShake', ({ username }) => {
     console.log(username)
     const SessionHandler = new session({clientTkn: ''})

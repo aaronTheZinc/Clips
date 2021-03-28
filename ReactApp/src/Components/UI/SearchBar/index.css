@@ -1,25 +1,61 @@
-.searchBar {
-    width: 20vw;
-    height: 7vh;
-    outline: none;
-    border-radius:30px;
-    background-color: #242424;
-    text-align: center;
-    border-color: #242424;
-    margin-top: 5vh;
-    color: #fff;
-    position: relative;
-    top: 0;
-    transition: top ease 0.5s;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+.wrapper{
+  position: absolute;
+  margin-top: 7vh;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.container{
+  position: relative;
+  padding: 20px 50px;
+}
+
+.input{
+  width: 400px;
+  height: 55px;
+  border: 3px solid #fff;
+  background: transparent;
+  padding: 15px 30px;
+  border-radius: 50px;
+  outline: none;
+  font-size: 18px;
+  color: #fff;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fff;
+  font-family: Roboto;
+  text-transform: uppercase;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #fff;
+}
+
+.close-btn{
+  position: absolute;
+  right: 50px;
+  cursor: pointer;
+  color: color;
+  background: #fff;
+  border: 0px;
+  width: 120px;
+  height: 55px;
+  border-radius: 50px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: bold;
 
 }
-.search-container {
-    display: inline;
-    background-color: #121212;
-    display: table;
-    margin: 0 auto;
- 
-}
-.searchBar:hover {
-    top: -10px;
-  }
+
+

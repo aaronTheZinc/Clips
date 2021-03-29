@@ -1,29 +1,26 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import {SocketContext} from '../State/Context'
+import {Socket} from '../State/UserProvider'
 const io = require("socket.io-client");
 const ENDPOINT = "http://localhost:5000";
+const socket = io(ENDPOINT);
 
-class Socket {
-  constructor() {
-    this.socket = io(ENDPOINT);
-    this.state = {
-      isConnected: false,
-    };
-  }
-  connect = () => {
-    this.socket.on("connection", () => {
-      this.state.isConnected = true;
-    });
-  };
-  handShake = () => {
+const SocketComponent = () => {
+ 
 
-        this.socket.emit("handShake", { username: "aaronmarsh12" });
-
-            this.socket.on("handShake", (data) => {
-              console.log(data);
-            });
-  
-
-     };
+    useEffect(() =>{
+        socket.emit("handShake", {username: "aaron"})
+        socket.on('handShake', ({token})=> {
+        
+         document.cookie =`token=${token}`
+            console.log('completed handShake!')
+        } )
+    }) 
+    return <></>
 }
-
-export default Socket;
+export default ({children}) => (
+    <Socket>
+        <SocketComponent/>
+        {children}
+    </Socket>
+)

@@ -2,6 +2,7 @@ import React, { Component, useContext } from "react";
 import ClipBar from "../ClipBar/main";
 import ChatView from "../Chat/main";
 import SearchBar from "../SearchBar/index";
+import FriendsPannel from '../FriendsPannel'
 import { hub as Context } from "../../State/Context";
 import "./base.css";
 class Hub extends Component {
@@ -19,6 +20,9 @@ class Hub extends Component {
         <div className="float-wrapper">
           <div style={{ float: "left" }}>
             <ClipBar />
+          </div>
+          <div style={{ float: "right" }}>
+              <FriendsPannel/>
           </div>
           <div style={{ marginLeft: "40vw", marginTop: "15vh" }}>
             <ChatView />

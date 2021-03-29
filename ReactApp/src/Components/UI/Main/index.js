@@ -2,14 +2,14 @@ import React, { Component, useContext } from "react";
 import Nav from "../Nav/index";
 import Chat from "../Chat/main";
 import Hub from '../Base/index';
-import {Socket} from '../../State/Context'
-import {HubProvider,Socket as Connection} from '../../State/UserProvider'
+import {SocketContext} from '../../State/Context'
+import {HubProvider} from '../../State/UserProvider'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import Connection from '../../Backend/Backend'
 const Main = (props) => {
-  const WebSocket = useContext(Socket)
-    WebSocket.connect()
-    WebSocket.handShake()
+
+
+   
     return (
       <div>
         <Nav /> 
@@ -35,8 +35,9 @@ const Main = (props) => {
 
 export default () => {
   return (
-    <Connection>
+    <Connection >
       <Main />
-    </Connection>
+      </Connection>
+
   )
 }

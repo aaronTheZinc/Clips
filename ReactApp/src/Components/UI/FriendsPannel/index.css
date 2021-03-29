@@ -1,7 +1,48 @@
 .pannel-container {
     height: 100vh;
     width: 20vw;
-    background-color: #FF8300
+    background-color: #FF8300;
+   
     
 }
+.username-container {
+    margin-top: 5vh;
+    font-family: Tommy;
+    font-size: 70px;
+    background-color: white;
 
+    
+}
+.friends-container {
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.friends-container {
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 80%;
+    height: 200px;
+    margin-top: 100px;
+    color: white;
+    border-radius: 20px;
+    
+}
+.card-header {
+    font-size:  40px;
+    font-weight: bolder;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.scroll {
+  
+    height: 100vh;
+    overflow-y: scroll;
+    padding-top: 10vh;
+}
+
+@font-face {
+    font-family: 'Tommy';
+    src: url(../Fonts/MADE\ TOMMY\ ExtraBold_PERSONAL\ USE.otf)
+}
+
+ 

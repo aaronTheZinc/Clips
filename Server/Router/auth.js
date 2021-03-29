@@ -3,7 +3,7 @@ exports.authenticate = ({req, res, next}) => {
         try {
             const {token} = req.query
             const tokenIsValid = tokenHandler.validate(token, res, next)
-             if(tokenIsValid.isValid){
+             if(tokenIsValid){
                  console.log('did work')
                  next()
              }

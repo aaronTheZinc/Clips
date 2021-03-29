@@ -28,6 +28,8 @@
   outline: none;
   font-size: 18px;
   color: #fff;
+  border-color:#FF8300
+  
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -47,7 +49,7 @@
   right: 50px;
   cursor: pointer;
   color: color;
-  background: #fff;
+  background: #FF8300;
   border: 0px;
   width: 120px;
   height: 55px;

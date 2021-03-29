@@ -18,10 +18,11 @@ class Token {
             })
             
         } else {
-            res.json(user)
+            return true
         }
        
     })
+    return isValid
 }
 }
 module.exports = new Token()

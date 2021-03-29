@@ -26,4 +26,6 @@
     margin-top: 10vh;  
     overflow: auto;
     max-height: 100vh;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
   }

@@ -13,7 +13,7 @@ const io = require("socket.io")(server, {
 const cors = require("cors")
 const router = require('./Router/bundler')
   app.use('/app', router)
-  app.use(cors)
+  app.use(cors())
   
   app.get('/init_connection', (req, res) => {
 

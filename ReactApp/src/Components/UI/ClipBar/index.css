@@ -11,8 +11,10 @@
     border-radius: 40px;
 }
 
-@media(min-width: 480px) {
-
+@media(max-width: 480px) {
+.clips-parent {
+    height: max-content;
+}
 }
 
 @media(min-width: 768px)  {

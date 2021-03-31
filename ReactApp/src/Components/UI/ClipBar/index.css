@@ -1,48 +1,98 @@
-.chat-container {
-    margin: 0 auto;
-    display: inline;
+
+.video-container {
+    vertical-align: middle;
+    
 }
 .video-cell {
-    padding-top: 5vh;
-    margin-left: 0vw;
+
+    width:inherit;
+    height: 40vh;
+    vertical-align: middle;
+    border-radius: 30px;
 }
+
+@media(min-width: 480px) {
+
+}
+
+@media(min-width: 768px)  {
+
+}
+
+@media(min-width: 1200px) {
+    .video-container {
+        
+        padding-top: 5vh;
+        width: 30vw;
+        height: 100vh;
+        overflow-y: scroll; /* Add the ability to scroll */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none; 
+        vertical-align: middle;
+      }
+      .chat-container {
+        margin: 0 auto;
+        display: inline;
+    }
+    .video-cell {
+        padding-top: 5vh;
+        margin-left: 0vw;
+    }
+}
+
 .scroll {
     height: 100vh;
     overflow-y: auto;
 }
 
-.video-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.video-container {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.video-container::-webkit-scrollbar {
-    display: none;
-  }
-
+@media(min-width: 1580px)  {
+    .chat-container {
+        margin: 0 auto;
+        display: inline;
+    }
+    .video-cell {
+        padding-top: 5vh;
+        margin-left: 0vw;
+    }
   
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .video-container::-webkit-scrollbar {
-      display: none;
-  }
-  
-  .video-container {
     
-    padding-top: 5vh;
-    width: 30vw;
-    height: 100vh;
-    overflow-y: scroll; /* Add the ability to scroll */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none; 
-  }
-  .header-lbl {
+    .video-container::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .video-container {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+    
+    .video-container::-webkit-scrollbar {
+        display: none;
+      }
+    
+      
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .video-container::-webkit-scrollbar {
+          display: none;
+      }
+      
+      .video-container {
+        
+        padding-top: 5vh;
+        width: 30vw;
+        height: 100vh;
+        overflow-y: scroll; /* Add the ability to scroll */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none; 
+      }
+   
+
+}
+.header-lbl {
     font-family: Tommy;
 }
 @font-face {

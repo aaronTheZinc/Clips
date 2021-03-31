@@ -9,6 +9,7 @@ export default () => (
     className="site-page-header"
     title="Clips"
     subTitle="Upload Your Clips"
+    style={{width:'100vw'}}
   />
   </div>
 

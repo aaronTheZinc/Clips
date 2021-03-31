@@ -14,7 +14,7 @@ class Hub extends Component {
   render() {
     return (
       <div className="container-main">
-        <div style={{ textAlign: "center", justifyContent: "center" }}>
+        <div className='searchbar-container' style={{ textAlign: "center", justifyContent: "center" }}>
           <SearchBar />
         </div>
         <div className="float-wrapper">

@@ -14,14 +14,13 @@
 }
 
 .bubble-container {
-    margin-top: 210px;
     box-shadow: -1px -5px 42px 1px rgba(0,0,0,0.16);
     width: 70%;
     border-radius: 40px;
     height: 15vh;
     /* margin-left: 10%; */
     padding: 20px;
-    margin-top: 10vh;
+  
     text-align: justify;
     background-color: #242424 ;
     position: relative;

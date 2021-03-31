@@ -1,8 +1,9 @@
 import React from "react";
 import "./index.css";
-const index = ({ header, text }) => {
+const index = ({ header, text, isFirst }) => {
+
   return (
-    <div className="bubble-container">
+    <div className="bubble-container" style={isFirst === true? console.log(true) : {marginTop:'7vh'}}>
       <div style={{ float: "left" }}>
         <section style={{ marginLeft: "5vw" }}>
           <label className="header-label">{header}</label>

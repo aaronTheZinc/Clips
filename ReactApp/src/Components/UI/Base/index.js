@@ -4,6 +4,7 @@ import ChatView from "../Chat/main";
 import SearchBar from "../SearchBar/index";
 import FriendsPannel from '../FriendsPannel'
 import { hub as Context } from "../../State/Context";
+import SuggestedFriends from '../NewFriends/index'
 import "./base.css";
 class Hub extends Component {
   constructor(props) {
@@ -18,10 +19,10 @@ class Hub extends Component {
           <SearchBar />
         </div>
         <div className="float-wrapper">
-          <div style={{ float: "left" }}>
+          <div className='clip-bar' style={{ float: "left" }}>
             <ClipBar />
           </div>
-          <div style={{ float: "right" }}>
+          <div className='friends-pannel' style={{ float: "right" }}>
               <FriendsPannel/>
           </div>
           <div style={{ marginLeft: "40vw", marginTop: "15vh" }}>

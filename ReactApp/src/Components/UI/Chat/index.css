@@ -2,6 +2,7 @@
 .chat-container {
     overflow: auto;
     max-height: 100vh;
+    background-color: white;
 }
 .chat-container::-webkit-scrollbar {
     display: none;
@@ -23,9 +24,8 @@
       display: none;
   }
   .scroll {
-    margin-top: 10vh;  
+ 
     overflow: auto;
     max-height: 100vh;
-    overflow-y: hidden; /* Hide vertical scrollbar */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+
   }

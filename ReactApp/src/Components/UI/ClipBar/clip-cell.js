@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 export default ({}) => {
   return (
-    <section className="video-cell">
+    <section className="video-cell" style={{borderRadius:'30px'}}>
 
       <img className='video-cell'
-        src="https://www.gamingscan.com/wp-content/uploads/2020/10/Call-of-Duty-Game-Order.jpg"
+        src="https://www.minecraft.net/content/dam/games/minecraft/marketplace/updates-catspandas_latest.jpg"
+        style={{borderRadius:'30px'}}
       />
     </section>
   );

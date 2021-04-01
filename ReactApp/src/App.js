@@ -4,6 +4,7 @@ import './App.css';
 import Main from "./Components/UI/Main/index"
 import Home from './Components/UI/Home/index'
 import './Components/UI/Theme/index.css'
+import {AppState} from './Components/State/UserProvider'
 import  {
   BrowserRouter as Router,
   Switch,
@@ -11,9 +12,13 @@ import  {
   Link
 } from "react-router-dom";
 function App() {
+  
   return (
     <div className="App">
-     <Main/>
+      <AppState>
+      <Main/>
+      </AppState>
+     
         
     </div>
   );

@@ -1,133 +1,80 @@
-
 .video-container {
-    vertical-align: middle;
-    
-}
-.video-cell {
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
 
-    width: 90%;
-    height: 30vh;
-    vertical-align: middle;
-    border-radius: 40px;
 }
 
-@media(max-width: 480px) {
-.clips-parent {
+@media (max-width: 480px) {
+  .clips-parent {
     height: max-content;
-}
-}
-
-@media(min-width: 768px)  {
-
+  }
 }
 
-@media(min-width: 1200px) {
-    .video-container {
-        
-        width: 30vw;
-        height: 100vh;
-        overflow-y: scroll; /* Add the ability to scroll */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none; 
-        vertical-align: middle;
-      }
-      .chat-container {
-        margin: 0 auto;
-        display: inline;
-    }
-    .video-cell {
-        padding-top: 5vh;
-       
-    }
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1200px) {
+  .video-container {
+    width: 30vw;
+    height: 100vh;
+    overflow-y: scroll; /* Add the ability to scroll */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    vertical-align: middle;
+  }
+  .chat-container {
+    margin: 0 auto;
+    display: inline;
+  }
+
 }
 
 .scroll {
-    height: 100vh;
-    overflow-y: auto;
+  height: 100vh;
+  overflow-y: auto;
 }
 
-    .chat-container {
-        margin: 0 auto;
-        display: inline;
-    }
-    .video-cell {
-        padding-top: 5vh;
-        margin-left: 0vw;
-    }
-  
-    
-    .video-container::-webkit-scrollbar {
-        display: none;
-    }
-    
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .video-container {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
-    
-    .video-container::-webkit-scrollbar {
-        display: none;
-      }
-    
-      
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .video-container::-webkit-scrollbar {
-          display: none;
-      }
-      
-
-@media(min-width: 1580px)  {
-    .chat-container {
-        margin: 0 auto;
-        display: inline;
-    }
-    .video-cell {
-        padding-top: 5vh;
-        margin-left: 0vw;
-    }
-  
-    
-    .video-container::-webkit-scrollbar {
-        display: none;
-    }
-    
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .video-container {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
-    
-    .video-container::-webkit-scrollbar {
-        display: none;
-      }
-    
-      
-      /* Hide scrollbar for Chrome, Safari and Opera */
-      .video-container::-webkit-scrollbar {
-          display: none;
-      }
-      
-      .video-container {
-        
-        padding-top: 5vh;
-        width: 30vw;
-        height: 100vh;
-        overflow-y: scroll; /* Add the ability to scroll */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none; 
-      }
-   
+.chat-container {
+  margin: 0 auto;
+  display: inline;
+}
+.video-cell {
+  margin-left: 5%;
+  width: 90%;
+  height: 40vh;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px 30px 30px 30px;
 
 }
+
+.video-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.video-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.video-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.video-container::-webkit-scrollbar {
+  display: none;
+}
+
 .header-lbl {
-    font-family: Tommy;
+  font-family: Tommy;
 }
 @font-face {
-    font-family: 'Tommy';
-    src: url(../Fonts/MADE\ TOMMY\ ExtraBold_PERSONAL\ USE.otf)
+  font-family: "Tommy";
+  src: url(../Fonts/MADE\ TOMMY\ ExtraBold_PERSONAL\ USE.otf);
 }

@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import "./index.css";
 import ClipView from "./clip-cell";
+import {Account as AccountModal} from '../Modals/modals'
 export default class ClipsBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [1, 2, 3, 4],
+
     };
   }
+  setOpen = () => this.setState({})
   render() {
     const { data } = this.state;
     return (

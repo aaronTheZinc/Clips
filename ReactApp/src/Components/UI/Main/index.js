@@ -5,9 +5,10 @@ import Hub from "../Base/index";
 import { SocketContext } from "../../State/Context";
 import { HubProvider } from "../../State/UserProvider";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Connection from "../../Backend/Backend";
+import {SocketProvider as Connection} from "../../Backend/Backend";
 import { isMobile } from "react-device-detect";
 import MobileView from "../Mobile/index";
+import Login from '../SignIn/index'
 const Main = (props) => {
   return (
     <div>
@@ -19,6 +20,9 @@ const Main = (props) => {
               <HubProvider>
                 <Hub />
               </HubProvider>
+            </Route>
+            <Route path="/login">
+             <Login/>
             </Route>
 
             <Route path="/">home sweet home</Route>

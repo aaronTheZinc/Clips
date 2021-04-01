@@ -6,7 +6,7 @@ export default ({}) => {
       <section>
         <img
           className="video-cell"
-          src="https://www.minecraft.net/content/dam/games/minecraft/marketplace/updates-catspandas_latest.jpg"
+          src="https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/warzone/strategy-guide/map/rebirth/BOCW-WZ-S1-RI-KEY-001.jpg"
           
         />
       </section>

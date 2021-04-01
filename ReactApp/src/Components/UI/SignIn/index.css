@@ -1,7 +1,29 @@
+.login-container {
+
+    width: '100%';
+    height: '100%'
+
+}
+
+.login-label {
+    font-size: 70px;
+    color: #FF8300
+}
+
 body {
     background-color: #121212;
 }
 
-.google-button {
-    
-}
+.form {
+    max-width: 630px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 30px;
+    color: white
+  }
+  
+  .form .form__custom-button {
+    margin-top: 50px;
+  }

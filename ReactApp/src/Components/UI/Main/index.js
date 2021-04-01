@@ -9,6 +9,7 @@ import {SocketProvider as Connection} from "../../Backend/Backend";
 import { isMobile } from "react-device-detect";
 import MobileView from "../Mobile/index";
 import Login from '../SignIn/index'
+import Register from '../SignIn/register'
 const Main = (props) => {
   return (
     <div>
@@ -23,6 +24,9 @@ const Main = (props) => {
             </Route>
             <Route path="/login">
              <Login/>
+            </Route>
+            <Route path="/register">
+             <Register/>
             </Route>
 
             <Route path="/">home sweet home</Route>

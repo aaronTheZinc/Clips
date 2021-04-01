@@ -5,6 +5,8 @@ import { hub as HubContext } from "./Context";
 import { SocketContext, socket, appState } from "./Context";
 import { SocketExport } from "../Backend/Backend";
 import { io } from "socket.io-client";
+import { FirebaseContext } from "./Context";
+import Firebase from './firebase'
 const baseUrl = "http://localhost:5000";
 // This context provider is passed to any component requiring the context
 
@@ -47,9 +49,8 @@ export const AppState = ({ children }) => {
     logout: () => {},
     login: async (payload) => {
       const result = await axios.post(`${baseUrl}/register`, payload);
-        const {data} = result;
-        console.log(data)
-          
+      const { data } = result;
+      console.log(data);
     },
   };
   const store = {
@@ -68,4 +69,11 @@ export const AppState = ({ children }) => {
       {children}
     </Provider>
   );
+};
+
+export const FirebaseProvider = ({ children }) => {
+  const { Provider } = FirebaseContext;
+  return <Provider value={new Firebase()}>
+    {children}
+  </Provider>;
 };

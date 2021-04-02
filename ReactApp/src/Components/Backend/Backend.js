@@ -20,7 +20,7 @@ const SocketComponent = () => {
   useEffect(() => {
     socket.emit("handShake", {token: readCookies() });
     socket.on("handShake", ({ user }) => {
-      const {username} = user
+      const {data:{username}} = user
       setUsername(username)
     });
   }, []);

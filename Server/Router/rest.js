@@ -13,7 +13,8 @@ router.use((req, res, next) =>
 router.use(cors());
 router.get("/friends", async(req, res) => {
   const { token } = req.query;
-  const {username} = tokenHandler.getData(token);
+  const {data:{username}} = tokenHandler.getData(token);
+  console.log(username)
   const db = new database(username);
    const result = await db.get(`users`);
      const {friends} = result

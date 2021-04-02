@@ -1,5 +1,10 @@
-import app from 'firebase/app';
-import 'firebase/auth';
+import React, { useContext } from 'react'
+import app from "firebase/app";
+import "firebase/auth";
+import {registerUser} from '../Backend/api'
+import {appState} from './Context'
+import Cookies from './cookies'
+import {useHistory} from 'react-router-dom'
 const config = {
   apiKey: "AIzaSyCCe3EZBhYzzDDjVhYp2DWULin4ItgIjKA",
   authDomain: "clips-e8ad8.firebaseapp.com",
@@ -7,30 +12,46 @@ const config = {
   storageBucket: "clips-e8ad8.appspot.com",
   messagingSenderId: "38161657877",
   appId: "1:38161657877:web:30befe0a6d2ef3e4139e1c",
-  measurementId: "G-P0Y59FWJ03"
+  measurementId: "G-P0Y59FWJ03",
 };
 
-class Firebase {
-  constructor() {
-    app.initializeApp(config);
+app.initializeApp(config);
+
+const auth = app.auth();
+export const fb_auth = auth
+ export const doCreateUserWithEmailAndPassword = ({email, password, username}) => {
+    const user = auth.createUserWithEmailAndPassword(email, password);
+    console.log(auth.currentUser.uid)
+    registerUser({
+      data: {email: email, username: username, uid: auth.currentUser.uid },
+      
+    })
+    
+
+ }
  
-    this.auth = app.auth();
-  }
- 
-  // *** Auth API ***
- 
-  doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
- 
-  doSignInWithEmailAndPassword = (email, password) =>
-    this.auth.signInWithEmailAndPassword(email, password);
- 
-  doSignOut = () => this.auth.signOut();
- 
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
- 
-  doPasswordUpdate = password =>
-    this.auth.currentUser.updatePassword(password);
-}
- 
-export default Firebase;
+
+    export const doSignInWithEmailAndPassword = (email, password) =>
+    auth.signInWithEmailAndPassword(email, password);
+
+    export const  doSignOut = () => {
+      try {
+        Cookies.cookies.clear();
+        auth.signOut().then(()=> {
+          const history = useHistory();
+           history.push('/')
+        })
+        alert("logged Out!")
+      }catch (e) {
+        alert(e)
+      }
+    }
+
+    export const  doPasswordReset = (email) => auth.sendPasswordResetEmail(email);
+
+    export const  doPasswordUpdate = (password) =>
+    auth.currentUser.updatePassword(password);
+
+
+
+

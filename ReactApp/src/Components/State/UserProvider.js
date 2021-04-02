@@ -6,7 +6,8 @@ import { SocketContext, socket, appState } from "./Context";
 import { SocketExport } from "../Backend/Backend";
 import { io } from "socket.io-client";
 import { FirebaseContext } from "./Context";
-import Firebase from './firebase'
+import { doSignOut, doCreateUserWithEmailAndPassword, fb_auth } from "./firebase";
+import cookies from "./cookies";
 const baseUrl = "http://localhost:5000";
 // This context provider is passed to any component requiring the context
 
@@ -44,36 +45,49 @@ export const Socket = ({ children }) => {
 /// App User State
 
 export const AppState = ({ children }) => {
-  const [username, setUsername] = useState("");
-  const actions = {
-    logout: () => {},
-    login: async (payload) => {
-      const result = await axios.post(`${baseUrl}/register`, payload);
-      const { data } = result;
-      console.log(data);
-    },
+  const logout = () => {
+    alert("Is logging out");
+    try {
+      doSignOut();
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
   };
-  const store = {
-    username: [username, setUsername],
-  };
+
   const { Provider } = appState;
+  const [username, setusername] = useState();
+  const [uid, setUid] = useState();
+  const [token, setToken] = useState();
+
+useEffect(()=> {
+  fb_auth.onAuthStateChanged((user) => {
+    if (user) {
+      setUid(user.uid)
+    } else {
+      // No user is signed in.
+    }
+})
+}, [])
+
+
+  const store = {
+    username: [username, setusername],
+    uid: [uid, setUid],
+    token: [token, setToken],
+  };
+  const actions = {
+    logout: () => doSignOut(),
+    register: (data) => doCreateUserWithEmailAndPassword(data)
+  };
   return (
     <Provider
       value={{
-        store: {
-          username: [username, setUsername],
-        },
+        store:store,
         action: actions,
       }}
     >
       {children}
     </Provider>
   );
-};
-
-export const FirebaseProvider = ({ children }) => {
-  const { Provider } = FirebaseContext;
-  return <Provider value={new Firebase()}>
-    {children}
-  </Provider>;
 };

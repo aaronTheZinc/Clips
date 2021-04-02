@@ -42,8 +42,9 @@ router.post("/register", async(req, res) => {
 });
 
 
-router.get('/new_app', (req, res) => {
+router.get('/new_token', (req, res) => {
   const {uid} = req
+  console.log(uid)
   console.log('token ui ->', uid)
   const db = new database();
    const data = db.newToken('users', uid)

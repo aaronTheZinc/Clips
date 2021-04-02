@@ -14,9 +14,9 @@ const readCookies = () => Cookies.cookies.readToken()
 
 
 const SocketComponent = () => {
-    const {
-        store:{username: [username, setUsername]},
-      } = useContext(appState);
+    // const {
+      //   store:{username: {username, setUsername}},
+      // } = useContext(appState);
   useEffect(() => {
     const token = readCookies() 
     if(token) {
@@ -24,8 +24,8 @@ const SocketComponent = () => {
     }
 
     socket.on("handShake", ({ user }) => {
-      const {data:{username}} = user
-      setUsername(username)
+      // const {data:{username}} = user
+      // setUsername(username)
     });
   }, []);
   return <></>;

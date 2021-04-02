@@ -4,17 +4,16 @@ import CustomInput from "../MicroComponents/input";
 import { Label, Input } from "@rebass/forms";
 import { appState } from "../../State/Context";
 import Cookie from "../../State/cookies";
+import {render} from 'react-dom'
 import "./index.css";
 export default ({setAuth}) => {
   const [email, setEmail] = useState("aaronmarsh755@gmail.com");
   const [password, setPassword] = useState("Buddy2004");
-  const {
-    action: {login}
-  } = useContext(appState);
+  const {state, dispatch} = useContext(appState);
 
   return (
     <div className="form">
-      <h1 style={{ color: "white" }}>Clips</h1>
+      <h1 style={{ color: "white" }}>{state.count}</h1>
       <section style={{ color: "white", marginTop: "20px" }}>
         <CustomInput
           labelText="Email"
@@ -40,16 +39,13 @@ export default ({setAuth}) => {
       <section style={{ marginTop: "10%" }}>
         <Button
           title="Login"
-          action={async () => {
-            const currentUserId = await login({
-              email: email,
-              password: password,
-            });
-            setAuth({state: true, uid: currentUserId})
-            window.open('/hub', '_self')
-          
-          }}
+          action={()=> dispatch({type: "increment", message:"Incremented"})}
         />
+         <Button
+          title="Satt"
+          action={()=> window.open('/hub', '_self')}
+        />
+
       </section>
     </div>
   );

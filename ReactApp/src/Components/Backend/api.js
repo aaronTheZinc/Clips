@@ -18,7 +18,7 @@ export const registerUser = async (payload) => {
 };
 
 export const getNewToken = async () => {
-  const {uid} = fb_auth.currentUser
+  const uid = cookies.cookies.readUid()
   const result = axios.get(`${baseUrl}/new_token?uid=${uid}`);
   const { data } = await result;
   create({ key: "token", value: data.token });

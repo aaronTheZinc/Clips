@@ -4,6 +4,7 @@ import Cookies from "./cookies";
 import { hub as HubContext } from "./Context";
 import { SocketContext, socket, appState } from "./Context";
 import { SocketExport } from "../Backend/Backend";
+import {getNewToken, GetNewToken} from '../Backend/api'
 import { io } from "socket.io-client";
 import { FirebaseContext } from "./Context";
 import {
@@ -54,15 +55,48 @@ export const AppState = ({ children }) => {
 
   const { Provider } = appState;
   const [username, setusername] = useState('default');
-  const [uid, setUid] = useState();
+  const [uid, setUid] = useState('ccuuc');
   const [token, setToken] = useState();
 
+  const reducer = (state, action) => {
+    switch(action.type) {
+      case "increment":
+        return {
+          count: state.count + 1,
+          message: state.count
+        }
+      case "decrement":
+        return {
+          count: state.count - 1,
+          message: action.message
+        }
+        case "reset":
+          return {
+            count: 0,
+            message: action.message
+          }
+      default:
+        throw new Error(`Unhandled action type: ${action.type}`);
+    }
+  }
+  const initialState = {count: 0, message: ""};
+  const [state, dispatch] = useReducer(reducer, initialState )
 
-
+  useEffect(() => {
+    fb_auth.onAuthStateChanged(function(user) {
+      if (user) {
+      setUid(user.uid)
+      getNewToken()
+      cookies.cookies.create({key: 'uid', value: uid})
+      } else {
+      }
+    });
+  })
+ 
   const store = {
-    username: [username, setusername],
-    uid: [uid, setUid],
-    token: [token, setToken],
+    username: {username, setusername},
+    uid: {uid, setUid},
+    token: {token, setToken},
   };
   const logout = () => {
     alert("Is logging out");
@@ -82,10 +116,7 @@ export const AppState = ({ children }) => {
   };
   return (
     <Provider
-      value={{
-        store: store,
-        action: actions,
-      }}
+      value={{state, dispatch}}
     >
       {children}
     </Provider>

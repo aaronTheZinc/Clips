@@ -5,20 +5,15 @@ import { Modal, ModalBody, ModalHeader } from "shards-react";
 import { Button } from "../MicroComponents/buttons";
 import { appState } from "../../State/Context";
 export const Account = ({ open, toggle }) => {
-  const {
-    store: {
-      username: [username, setUsername],
-    },
-    action: { logout },
-  } = useContext(appState);
+  const {uid, setUid} = useContext(appState);
 
   return (
     <div>
       <Modal open={open} toggle={toggle}>
-        <ModalHeader>{`@${username}`}</ModalHeader>
+        <ModalHeader>{`@${uid}`}</ModalHeader>
         <ModalBody>
           <section style={{ display: "flex" }}>
-            <Button title="Log Out" action={() => logout()} />
+            <Button title="Log Out" action={() => {}} />
           </section>
         </ModalBody>
       </Modal>

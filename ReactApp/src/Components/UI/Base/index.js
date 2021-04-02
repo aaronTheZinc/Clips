@@ -8,16 +8,15 @@ import SuggestedFriends from '../NewFriends/index'
 
 import {fb_auth} from '../../State/firebase'
 import "./base.css";
-export default class Hub extends Component {
-  constructor({isAuthenticated, uid}) {
+ class Hub extends Component {
+  constructor({auth}) {
     super();
-    this.uid = uid;
-    this.isAuthenticated = isAuthenticated
+    // this.uid = uid;
+    // this.isAuthenticated = isAuthenticated
+
   }
 
   render() {
-    alert(this.isAuthenticated)
-    if (this.isAuthenticated) {
       return (
         <div className="container-main">
           <div className='searchbar-container' style={{ textAlign: "center", justifyContent: "center" }}>
@@ -36,10 +35,18 @@ export default class Hub extends Component {
           </div>
         </div>
       );
-    } else {
-      return <h2>Not Auththenticate</h2>
-    }
     
   }
 }
 
+export default () => {
+  const {state} = useContext(appState);
+  useEffect(() => {
+    console.log('no more prop drilling', state.count)
+  },[])
+  if(true) {
+    return <Hub />
+  } else {
+    return <h1>Is not auth</h1>
+  }
+}

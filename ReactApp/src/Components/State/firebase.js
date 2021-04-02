@@ -45,7 +45,6 @@ console.log('login ->', email, password)
   .catch((error) => {
     console.log('login ->', email, password)
     console.log(error)
-    alert(error.code)
     return {
       error: error,
       message: error.code
@@ -62,7 +61,6 @@ export const doSignOut = () => {
       window.open('/login', '_self')
     });
   } catch (e) {
-    alert(e);
   }
 };
 

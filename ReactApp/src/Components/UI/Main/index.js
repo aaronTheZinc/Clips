@@ -20,8 +20,10 @@ class Main extends Component {
       },
     };
   }
+  componentDidMount() {
+
+  }
   setAuth = ({uid, state}) =>{
-    alert('')
     console.log(uid, state)
     this.setState({auth: {uid: uid, isAuthenticated: state}})
   }  

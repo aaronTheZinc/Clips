@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import app from "firebase/app";
 import "firebase/auth";
-import {registerUser} from '../Backend/api'
-import {appState} from './Context'
-import Cookies from './cookies'
-import {useHistory} from 'react-router-dom'
+import { registerUser } from "../Backend/api";
+import { appState } from "./Context";
+import Cookies from "./cookies";
+import { useHistory } from "react-router-dom";
 const config = {
   apiKey: "AIzaSyCCe3EZBhYzzDDjVhYp2DWULin4ItgIjKA",
   authDomain: "clips-e8ad8.firebaseapp.com",
@@ -18,40 +18,55 @@ const config = {
 app.initializeApp(config);
 
 const auth = app.auth();
-export const fb_auth = auth
- export const doCreateUserWithEmailAndPassword = ({email, password, username}) => {
-    const user = auth.createUserWithEmailAndPassword(email, password);
-    console.log(auth.currentUser.uid)
-    registerUser({
-      data: {email: email, username: username, uid: auth.currentUser.uid },
-      
-    })
-    
+export const fb_auth = auth;
+export const doCreateUserWithEmailAndPassword = ({
+  email,
+  password,
+  username,
+}) => {
+  const user = auth.createUserWithEmailAndPassword(email, password);
+  console.log(auth.currentUser.uid);
+  registerUser({
+    data: { email: email, username: username, uid: auth.currentUser.uid },
+  });
+};
 
- }
+export const doSignInWithEmailAndPassword = async({email, password}) => {
+ const login = await auth.signInWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+console.log('login ->', email, password)
+    // setUid(userCredential.user.uid);
+    //  window.open('/hub', '_self')
+    // Signed in
+   console.log(userCredential.user.uid)
+    // ...
+    return userCredential.user.uid
+  })
+  .catch((error) => {
+    console.log('login ->', email, password)
+    console.log(error)
+    alert(error.code)
+    return {
+      error: error,
+      message: error.code
+    }
+  });
+  return login
+}
  
 
-    export const doSignInWithEmailAndPassword = (email, password) =>
-    auth.signInWithEmailAndPassword(email, password);
+export const doSignOut = () => {
+  try {
+    Cookies.cookies.clear();
+    auth.signOut().then(() => {
+      window.open('/login', '_self')
+    });
+  } catch (e) {
+    alert(e);
+  }
+};
 
-    export const  doSignOut = () => {
-      try {
-        Cookies.cookies.clear();
-        auth.signOut().then(()=> {
-          const history = useHistory();
-           history.push('/')
-        })
-        alert("logged Out!")
-      }catch (e) {
-        alert(e)
-      }
-    }
+export const doPasswordReset = (email) => auth.sendPasswordResetEmail(email);
 
-    export const  doPasswordReset = (email) => auth.sendPasswordResetEmail(email);
-
-    export const  doPasswordUpdate = (password) =>
-    auth.currentUser.updatePassword(password);
-
-
-
-
+export const doPasswordUpdate = (password) =>
+  auth.currentUser.updatePassword(password);

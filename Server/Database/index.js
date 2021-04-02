@@ -3,9 +3,14 @@ class database {
   constructor(username) {
     this.username = username;
   }
-
-  get = async (route) => {
-    const docRef = fs.collection(route).doc(this.username);
+ newToken = async(collection, uid) => {
+  const docRef = fs.collection(collection).where('uid', '==', uid)
+  const result = await docRef.get().then((doc => doc.docs.map(d => d.data())))
+  console.log(result[1])
+   return result[1]
+ }
+  get = async (collection, doc) => {
+    const docRef = fs.collection(collection).doc(doc);
     const result = docRef
       .get()
       .then((doc) => {

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useReducer } from "react";
+import React, { createContext, useState, useEffect, useReducer, useContext } from "react";
 import axios from "axios";
 import Cookies from "./cookies";
 import { hub as HubContext } from "./Context";
@@ -6,7 +6,12 @@ import { SocketContext, socket, appState } from "./Context";
 import { SocketExport } from "../Backend/Backend";
 import { io } from "socket.io-client";
 import { FirebaseContext } from "./Context";
-import { doSignOut, doCreateUserWithEmailAndPassword, fb_auth } from "./firebase";
+import {
+  doSignOut,
+  doCreateUserWithEmailAndPassword,
+  fb_auth,
+  doSignInWithEmailAndPassword,
+} from "./firebase";
 import cookies from "./cookies";
 const baseUrl = "http://localhost:5000";
 // This context provider is passed to any component requiring the context
@@ -45,30 +50,13 @@ export const Socket = ({ children }) => {
 /// App User State
 
 export const AppState = ({ children }) => {
-  const logout = () => {
-    alert("Is logging out");
-    try {
-      doSignOut();
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
-  };
+
 
   const { Provider } = appState;
-  const [username, setusername] = useState();
+  const [username, setusername] = useState('default');
   const [uid, setUid] = useState();
   const [token, setToken] = useState();
 
-useEffect(()=> {
-  fb_auth.onAuthStateChanged((user) => {
-    if (user) {
-      setUid(user.uid)
-    } else {
-      // No user is signed in.
-    }
-})
-}, [])
 
 
   const store = {
@@ -76,14 +64,26 @@ useEffect(()=> {
     uid: [uid, setUid],
     token: [token, setToken],
   };
+  const logout = () => {
+    alert("Is logging out");
+    try {
+      setUid(null)
+      setToken(null)
+      doSignOut();
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
   const actions = {
-    logout: () => doSignOut(),
-    register: (data) => doCreateUserWithEmailAndPassword(data)
+    logout: () => logout(),
+    register: (data) => doCreateUserWithEmailAndPassword(data),
+    login: async (data) => doSignInWithEmailAndPassword(data)
   };
   return (
     <Provider
       value={{
-        store:store,
+        store: store,
         action: actions,
       }}
     >

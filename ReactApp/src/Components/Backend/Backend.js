@@ -18,7 +18,11 @@ const SocketComponent = () => {
         store:{username: [username, setUsername]},
       } = useContext(appState);
   useEffect(() => {
-    socket.emit("handShake", {token: readCookies() });
+    const token = readCookies() 
+    if(token) {
+      socket.emit("handShake", {token: token  });
+    }
+
     socket.on("handShake", ({ user }) => {
       const {data:{username}} = user
       setUsername(username)

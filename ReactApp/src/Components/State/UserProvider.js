@@ -1,10 +1,16 @@
-import React, { createContext, useState, useEffect, useReducer, useContext } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useReducer,
+  useContext,
+} from "react";
 import axios from "axios";
 import Cookies from "./cookies";
 import { hub as HubContext } from "./Context";
 import { SocketContext, socket, appState } from "./Context";
 import { SocketExport } from "../Backend/Backend";
-import {getNewToken, GetNewToken} from '../Backend/api'
+import { getNewToken, GetNewToken, registerUser } from "../Backend/api";
 import { io } from "socket.io-client";
 import { FirebaseContext } from "./Context";
 import {
@@ -40,83 +46,75 @@ export const HubProvider = ({ children }) => {
 };
 
 /// Web Socket Provider
-export const Socket = ({ children }) => {
-  const [token, setToken] = useState("");
-  useEffect(() => {}, []);
-  const { Provider } = SocketContext;
-
-  return <Provider value={{ token, setToken }}>{children}</Provider>;
-};
-
-/// App User State
-
 export const AppState = ({ children }) => {
-
-
-  const { Provider } = appState;
-  const [username, setusername] = useState('default');
-  const [uid, setUid] = useState('ccuuc');
-  const [token, setToken] = useState();
-
+  const template = {
+    auth: {
+      uid: "",
+      isAuth: false,
+    },
+  };
   const reducer = (state, action) => {
-    switch(action.type) {
-      case "increment":
+    switch (action.type) {
+      case "setUid":
         return {
-          count: state.count + 1,
-          message: state.count
-        }
-      case "decrement":
+          auth: {
+            uid: action.value,
+            isAuth: true,
+            
+          },
+        };
+      case 'setUsername': 
         return {
-          count: state.count - 1,
-          message: action.message
-        }
-        case "reset":
-          return {
-            count: 0,
-            message: action.message
+          auth: {
+            username: action.value
           }
-      default:
-        throw new Error(`Unhandled action type: ${action.type}`);
+        }
+      case 'isAuth':
+        return {
+          auth: {
+            isAuth: false
+          }
+        }  
+      case "logout":
+        doSignOut();
+        return {
+          auth: {
+            isAuth: false,
+            uid: "",
+          },
+        };
     }
-  }
-  const initialState = {count: 0, message: ""};
-  const [state, dispatch] = useReducer(reducer, initialState )
+  };
+
+  const actions = {
+    login: (data, next) => doSignInWithEmailAndPassword(data, next),
+    register: (data) => doCreateUserWithEmailAndPassword(data)
+  };
+  const [state, dispatch] = useReducer(reducer, template);
+
+  //// Initializers
 
   useEffect(() => {
-    fb_auth.onAuthStateChanged(function(user) {
-      if (user) {
-      setUid(user.uid)
-      getNewToken()
-      cookies.cookies.create({key: 'uid', value: uid})
+    //add is logged in auth
+    fb_auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        const { uid } = authUser;
+        dispatch({ type: "setUid", value: uid });
+        getNewToken(uid);
       } else {
+        dispatch({ type: "isAuth", value: false });
       }
     });
-  })
- 
-  const store = {
-    username: {username, setusername},
-    uid: {uid, setUid},
-    token: {token, setToken},
-  };
-  const logout = () => {
-    alert("Is logging out");
-    try {
-      setUid(null)
-      setToken(null)
-      doSignOut();
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
-  };
-  const actions = {
-    logout: () => logout(),
-    register: (data) => doCreateUserWithEmailAndPassword(data),
-    login: async (data) => doSignInWithEmailAndPassword(data)
-  };
+  }, []);
+
+  const { Provider } = appState;
   return (
     <Provider
-      value={{state, dispatch}}
+      value={{
+        state,
+        dispatch,
+        actions: actions,
+      }}
     >
       {children}
     </Provider>

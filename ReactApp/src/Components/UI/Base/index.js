@@ -5,7 +5,6 @@ import SearchBar from "../SearchBar/index";
 import FriendsPannel from '../FriendsPannel'
 import { hub as Context, appState } from "../../State/Context";
 import SuggestedFriends from '../NewFriends/index'
-
 import {fb_auth} from '../../State/firebase'
 import "./base.css";
  class Hub extends Component {
@@ -40,11 +39,11 @@ import "./base.css";
 }
 
 export default () => {
-  const {state} = useContext(appState);
+  const {state:{auth: {isAuth}}} = useContext(appState);
   useEffect(() => {
-    console.log('no more prop drilling', state.count)
+
   },[])
-  if(true) {
+  if(isAuth) {
     return <Hub />
   } else {
     return <h1>Is not auth</h1>

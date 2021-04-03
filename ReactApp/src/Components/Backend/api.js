@@ -17,10 +17,11 @@ export const registerUser = async (payload) => {
   console.log("registered response =>", data);
 };
 
-export const getNewToken = async () => {
-  const uid = cookies.cookies.readUid()
+export const getNewToken = async (uid) => {
+
   const result = axios.get(`${baseUrl}/new_token?uid=${uid}`);
   const { data } = await result;
+  console.log('token get response', data)
   create({ key: "token", value: data.token });
   return;
 };

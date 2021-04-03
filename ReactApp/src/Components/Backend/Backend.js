@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { SocketContext } from "../State/Context";
-import { Socket } from "../State/UserProvider";
+import { AppState as Socket } from "../State/UserProvider";
 import {appState} from '../State/Context'
 import Cookies from '../State/cookies'
 const io = require("socket.io-client");
@@ -30,9 +30,40 @@ const SocketComponent = () => {
   }, []);
   return <></>;
 };
-export const SocketProvider = ({ children }) => (
-  <Socket>
-    <SocketComponent />
-    {children}
-  </Socket>
-);
+export const SocketProvider = ({ children }) => {
+    const { dispatch } = useContext(appState);
+    useEffect(() => {
+    const token = readCookies();
+    if (token) {
+      socket.emit("handShake", { token: token });
+    }
+
+    socket.on("handShake", ({ user }) => {
+      console.log(user)
+      // dispatch({type: 'setUsername', value: user.username})
+    });
+  }, []);
+return (
+<Socket >
+{children}
+</Socket>
+    
+  
+)
+};
+
+// export const SocketProvider = ({ children }) => {
+//   const { dispatch } = useContext(appState);
+//   useEffect(() => {
+//     const token = readCookies();
+//     if (token) {
+//       socket.emit("handShake", { token: token });
+//     }
+
+//     socket.on("handShake", ({ username }) => {
+//       alert(username)
+//       dispatch({type: 'setUsername', value: username})
+//     });
+//   }, []);
+//   return (children)
+// }

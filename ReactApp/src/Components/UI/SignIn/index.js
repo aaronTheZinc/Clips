@@ -6,14 +6,17 @@ import { appState } from "../../State/Context";
 import Cookie from "../../State/cookies";
 import {render} from 'react-dom'
 import "./index.css";
+import { useHistory } from "react-router";
 export default ({setAuth}) => {
   const [email, setEmail] = useState("aaronmarsh755@gmail.com");
   const [password, setPassword] = useState("Buddy2004");
-  const {state, dispatch} = useContext(appState);
+  const {state, dispatch, actions} = useContext(appState);
+  const {login} = actions
+  const history = useHistory()
 
   return (
     <div className="form">
-      <h1 style={{ color: "white" }}>{state.count}</h1>
+      <h1 style={{ color: "white" }}>Clips</h1>
       <section style={{ color: "white", marginTop: "20px" }}>
         <CustomInput
           labelText="Email"
@@ -39,12 +42,11 @@ export default ({setAuth}) => {
       <section style={{ marginTop: "10%" }}>
         <Button
           title="Login"
-          action={()=> dispatch({type: "increment", message:"Incremented"})}
+          action={()=> {
+            login({email: email, password: password}, () => history.push('/hub'))
+          }}
         />
-         <Button
-          title="Satt"
-          action={()=> window.open('/hub', '_self')}
-        />
+       
 
       </section>
     </div>

@@ -11,7 +11,7 @@ router.use(cors());
 
 router.use(express.json());
 
-router.post("/register", async(req, res) => {
+router.post("/register", async (req, res) => {
   try {
     const { username, email, uid } = req.body.data;
     const db = new database(username);
@@ -22,17 +22,15 @@ router.post("/register", async(req, res) => {
       friends: [],
       content: [],
     };
-   const result = await db.newUser(template);
-        const token = tokenHandler.createToken(req.body);
+    const result = await db.newUser(template);
+    const token = tokenHandler.createToken(req.body);
 
-        res.json({
-          status: "200",
-          token: token,
-        });
-    
-  
+    res.json({
+      status: "200",
+      token: token,
+    });
   } catch (e) {
-      console.log(e)
+    console.log(e);
     res.json({
       error: e,
       status: 500,
@@ -41,12 +39,16 @@ router.post("/register", async(req, res) => {
   console.log(req.body);
 });
 
-
-router.get('/new_token', (req, res) => {
-  const {uid} = req
-  console.log(uid)
-  console.log('token ui ->', uid)
+router.get("/new_token", async (req, res) => {
+  const { uid } = req.query;
+  console.log(uid);
+  console.log("token ui ->", uid);
   const db = new database();
-   const data = db.newToken('users', uid)
-})
+  const data = await db.newToken("users", uid);
+  const token = tokenHandler.createToken(data);
+  res.json({
+    status: 200,
+    token: token,
+  });
+});
 module.exports = router;

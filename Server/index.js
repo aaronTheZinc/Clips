@@ -43,6 +43,7 @@ io.on("connection", (socket) => {
 
   socket.on("handShake", ({ token }) => {
     const user = tokenHandler.authenticate_token(token);
+    console.log(user)
     io.emit("handShake", { user: user });
   });
 

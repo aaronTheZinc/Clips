@@ -5,7 +5,9 @@ import { Modal, ModalBody, ModalHeader } from "shards-react";
 import { Button } from "../MicroComponents/buttons";
 import { appState } from "../../State/Context";
 export const Account = ({ open, toggle }) => {
-  const {uid, setUid} = useContext(appState);
+  const {state, dispatch} = useContext(appState);
+  const {auth:{uid}} = state
+  
 
   return (
     <div>
@@ -13,7 +15,7 @@ export const Account = ({ open, toggle }) => {
         <ModalHeader>{`@${uid}`}</ModalHeader>
         <ModalBody>
           <section style={{ display: "flex" }}>
-            <Button title="Log Out" action={() => {}} />
+            <Button title="Log Out" action={() => dispatch({type:'logout', value: null})}/>
           </section>
         </ModalBody>
       </Modal>

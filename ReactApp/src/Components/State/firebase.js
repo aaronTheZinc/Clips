@@ -31,14 +31,11 @@ export const doCreateUserWithEmailAndPassword = ({
   });
 };
 
-export const doSignInWithEmailAndPassword = async({email, password}) => {
+export const doSignInWithEmailAndPassword = async({email, password}, next) => {
  const login = await auth.signInWithEmailAndPassword(email, password)
   .then((userCredential) => {
 console.log('login ->', email, password)
-    // setUid(userCredential.user.uid);
-    //  window.open('/hub', '_self')
-    // Signed in
-   console.log(userCredential.user.uid)
+    next()
     // ...
     return userCredential.user.uid
   })

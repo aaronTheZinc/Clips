@@ -8,8 +8,9 @@ import { isMobile } from "react-device-detect";
 import MobileView from "../Mobile/index";
 import Login from "../SignIn/index";
 import Register from "../SignIn/register";
+
 import { fb_auth } from "../../State/firebase";
-import { AppState } from "../../State/UserProvider";
+
 class Main extends Component {
   constructor() {
     super();
@@ -35,21 +36,13 @@ class Main extends Component {
         <Nav />
         {!isMobile === true ? (
           <Router>
-            <Switch>
-              <Route path="/hub">
-                <AppState>
-                  <Hub auth={this.state.auth} />
-                </AppState>
-              </Route>
-              <Route path="/login">
-                <Login test='ss'  setAuth={this.setAuth} />
-              </Route>
-              <Route path="/register">
-                <Register />
+
+              <Route path="/hub" component={Hub} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register}>
               </Route>
 
-              <Route path="/">home sweet home</Route>
-            </Switch>
+      
           </Router>
         ) : (
           <MobileView />

@@ -4,8 +4,7 @@ import './App.css';
 import Main from "./Components/UI/Main/index"
 import Home from './Components/UI/Home/index'
 import './Components/UI/Theme/index.css'
-import {AppState} from './Components/State/UserProvider'
-import {appState} from './Components/State/Context'
+import {appState as AppState} from './Components/State/Context'
 import  {
   BrowserRouter as Router,
   Switch,
@@ -16,33 +15,19 @@ import  {
 function App() {
   const reducer = (state, action) => {
     switch(action.type) {
-      case "increment":
-        return {
-          count: state.count + 3,
-          message: state.count
-        }
-      case "decrement":
-        return {
-          count: state.count - 1,
-          message: action.message
-        }
-        case "reset":
-          return {
-            count: 0,
-            message: action.message
-          }
+      case "uid":
+            state.uid = action.value
       default:
-        throw new Error(`Unhandled action type: ${action.type}`);
+        return state
     }
   }
-  const initialState = {count: 0, message: ""};
+  const initialState = {uid: ''};
   const [state, dispatch] = useReducer(reducer, initialState )
-  const {Provider} = appState
   return (
     <div className="App">
-      <Provider value={{state, dispatch}}>
+      <AppState.Provider value={{state, dispatch}}>
       <Main/>
-      </Provider>
+      </AppState.Provider>
      
         
     </div>

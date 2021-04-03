@@ -16,7 +16,7 @@ router.get("/friends", async(req, res) => {
   const {data:{username}} = tokenHandler.getData(token);
   console.log(username)
   const db = new database(username);
-   const result = await db.get(`users`);
+   const result = await db.get(`users`, username);
      const {friends} = result
   res.json({
     friends: {

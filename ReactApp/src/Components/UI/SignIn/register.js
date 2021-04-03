@@ -4,10 +4,9 @@ import CustomInput from "../MicroComponents/input";
 import { Label, Input } from "@rebass/forms";
 import { appState } from "../../State/Context";
 import "./index.css";
+import { use } from "../../../../../Server/Router/rest";
 export default () => {
-  const {
-    action: { register },
-  } = useContext(appState);
+  const {actions:{register}} = useContext(appState);
   const  [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [username, setUsername] = useState()
@@ -49,7 +48,7 @@ export default () => {
         />
       </section>
       <section style={{marginTop:'10%'}}>
-      <Button title="Register" action={() => register({email:email, password: password, username: username})} />
+      <Button title="Register" action={() => register({username: username, email: email, })} />
       </section>
       
     </div>

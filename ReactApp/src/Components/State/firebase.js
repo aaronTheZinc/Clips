@@ -5,6 +5,7 @@ import { registerUser } from "../Backend/api";
 import { appState } from "./Context";
 import Cookies from "./cookies";
 import { useHistory } from "react-router-dom";
+import swal from 'sweetalert'
 const config = {
   apiKey: "AIzaSyCCe3EZBhYzzDDjVhYp2DWULin4ItgIjKA",
   authDomain: "clips-e8ad8.firebaseapp.com",
@@ -19,46 +20,53 @@ app.initializeApp(config);
 
 const auth = app.auth();
 export const fb_auth = auth;
-export const doCreateUserWithEmailAndPassword = ({
-  email,
-  password,
-  username,
-}) => {
-  const user = auth.createUserWithEmailAndPassword(email, password);
-  console.log(auth.currentUser.uid);
-  registerUser({
-    data: { email: email, username: username, uid: auth.currentUser.uid },
-  });
+export const doCreateUserWithEmailAndPassword = (
+  { email, password, username },
+  next
+) => {
+  const user = auth
+    .createUserWithEmailAndPassword(email, password)
+    .then((client) => {
+      alert(client.user.uid)
+      registerUser({
+        data: { email: email, username: username, uid: client.user.uid},
+      });
+      // next();
+    })
+    .catch((error) => {
+      swal("Uh oh!", error.code, "error");
+    })
 };
 
-export const doSignInWithEmailAndPassword = async({email, password}, next) => {
- const login = await auth.signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-console.log('login ->', email, password)
-    next()
-    // ...
-    return userCredential.user.uid
-  })
-  .catch((error) => {
-    console.log('login ->', email, password)
-    console.log(error)
-    return {
-      error: error,
-      message: error.code
-    }
-  });
-  return login
-}
- 
+export const doSignInWithEmailAndPassword = async (
+  { email, password },
+  next
+) => {
+  const login = await auth
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      console.log("login ->", email, password);
+      next();
+      // ...
+      return userCredential.user.uid;
+    })
+    .catch((error) => {
+      swal("Uh oh!", error.code, "error");
+      return {
+        error: error,
+        message: error.code,
+      };
+    });
+  return login;
+};
 
 export const doSignOut = () => {
   try {
     Cookies.cookies.clear();
     auth.signOut().then(() => {
-      window.open('/login', '_self')
+      window.open("/login", "_self");
     });
-  } catch (e) {
-  }
+  } catch (e) {}
 };
 
 export const doPasswordReset = (email) => auth.sendPasswordResetEmail(email);

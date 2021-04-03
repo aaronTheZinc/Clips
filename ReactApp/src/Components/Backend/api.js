@@ -7,6 +7,7 @@ const {
   cookies: { readToken, create },
 } = Cookies;
 export const registerUser = async (payload) => {
+  console.log("try payload -", payload);
   const result = await axios.post(`${baseUrl}/register`, payload);
   const { data } = result;
   if (data.status === "200") {
@@ -18,10 +19,9 @@ export const registerUser = async (payload) => {
 };
 
 export const getNewToken = async (uid) => {
-
   const result = axios.get(`${baseUrl}/new_token?uid=${uid}`);
   const { data } = await result;
-  console.log('token get response', data)
+  console.log("token get response", data);
   create({ key: "token", value: data.token });
   return;
 };

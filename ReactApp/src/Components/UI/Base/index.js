@@ -3,10 +3,12 @@ import ClipBar from "../ClipBar/main";
 import ChatView from "../Chat/main";
 import SearchBar from "../SearchBar/index";
 import FriendsPannel from '../FriendsPannel'
+import {Spin} from 'antd'
 import { hub as Context, appState } from "../../State/Context";
 import SuggestedFriends from '../NewFriends/index'
 import {fb_auth} from '../../State/firebase'
 import "./base.css";
+import { useHistory } from "react-router";
  class Hub extends Component {
   constructor({auth}) {
     super();
@@ -46,6 +48,7 @@ export default () => {
   if(isAuth) {
     return <Hub />
   } else {
-    return <h1>Is not auth</h1>
+    useHistory().push('/login')
+    return <Spin/>
   }
 }

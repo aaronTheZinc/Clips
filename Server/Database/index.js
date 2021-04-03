@@ -6,10 +6,14 @@ class database {
  newToken = async(collection, uid) => {
   const docRef = fs.collection(collection).where('uid', '==', uid)
   const result = await docRef.get().then((doc => doc.docs.map(d => d.data())))
-  const user = result[1] 
-   const root = {data:{username: user.username, uid: uid}}
+  const user = result[0] 
+  console.log('-- user', user)
+  if(user) {
+    return {data:{username: user.username, uid: uid}}
+  } else {
+    return 
+  }
 
-   return root
  }
   get = async (collection, doc) => {
     const docRef = fs.collection(collection).doc(doc);

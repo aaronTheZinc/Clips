@@ -40,7 +40,7 @@ export const SocketProvider = ({ children }) => {
 
     socket.on("handShake", ({ user }) => {
       console.log(user)
-      // dispatch({type: 'setUsername', value: user.username})
+      dispatch({type: 'setUsername', value: user.data.username})
     });
   }, []);
 return (

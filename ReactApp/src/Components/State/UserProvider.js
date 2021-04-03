@@ -88,7 +88,7 @@ export const AppState = ({ children }) => {
 
   const actions = {
     login: (data, next) => doSignInWithEmailAndPassword(data, next),
-    register: (data) => doCreateUserWithEmailAndPassword(data)
+    register: (data, next) => doCreateUserWithEmailAndPassword(data, next)
   };
   const [state, dispatch] = useReducer(reducer, template);
 

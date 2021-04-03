@@ -41,9 +41,10 @@ export default class Pannel extends Component {
         <Username
           username={username}
           toggle={this.toggle}
+
         
         />
-        <Account open={open} toggle={this.toggle} />
+        <Account username={username} open={open} toggle={this.toggle} />
         <section className="scroll">
           <FriendsPannel friends={friends} />
         </section>

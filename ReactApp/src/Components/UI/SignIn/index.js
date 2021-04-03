@@ -8,8 +8,8 @@ import {render} from 'react-dom'
 import "./index.css";
 import { useHistory } from "react-router";
 export default ({setAuth}) => {
-  const [email, setEmail] = useState("aaronmarsh755@gmail.com");
-  const [password, setPassword] = useState("Buddy2004");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const {state, dispatch, actions} = useContext(appState);
   const {login} = actions
   const history = useHistory()

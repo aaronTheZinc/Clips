@@ -2,7 +2,8 @@ import axios from "axios";
 import cookies from "../State/cookies";
 import Cookies from "../State/cookies";
 import { fb_auth } from "../State/firebase";
-const baseUrl = "http://localhost:5000/app";
+
+const baseUrl = process.env.REACT_APP_BASE_URL
 const {
   cookies: { readToken, create },
 } = Cookies;
@@ -19,9 +20,11 @@ export const registerUser = async (payload) => {
 };
 
 export const getNewToken = async (uid) => {
-  const result = axios.get(`${baseUrl}/new_token?uid=${uid}`);
+  const result = axios.get(`${baseUrl}/app/new_token?uid=${uid}`);
   const { data } = await result;
+  alert(data)
   console.log("token get response", data);
+
   create({ key: "token", value: data.token });
   return;
 };

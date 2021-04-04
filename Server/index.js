@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
 const tokenHandler = require("./Token/index");
+const PORT = process.env.PORT || 5000
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -14,6 +15,11 @@ const cors = require("cors");
 const router = require("./Router/bundler");
 app.use("/app", router);
 app.use(cors());
+app.get('/', (req, res)=> {
+  res.json({
+    message: 'welcome to clips'
+  })
+})
 
 app.get("/init_connection", (req, res) => {
   try {
@@ -50,7 +56,4 @@ io.on("connection", (socket) => {
 
 
 });
-
-server.listen(5000, () => {
-  console.log("Server Spun Up");
-});
+server.listen(PORT)

@@ -4,6 +4,7 @@ import Cookies from "../../State/cookies";
 import { Username, FriendsPannel } from "./modules";
 import "./index.css";
 import { Account } from "../Modals/modals";
+const baseUrl = process.env.REACT_APP_BASE_URL
 export default class Pannel extends Component {
   constructor(props) {
     super(props);
@@ -23,9 +24,10 @@ export default class Pannel extends Component {
     });
 
   fetchFriends = async () => {
+    alert(baseUrl)
     const token = Cookies.cookies.readToken();
     const result = axios.get(
-      `http://localhost:5000/app/api/friends?token=${token}`
+      `${baseUrl}/app/api/friends?token=${token}`
     );
     const { data } = await result;
     console.log(data);

@@ -20,7 +20,7 @@ import {
   doSignInWithEmailAndPassword,
 } from "./firebase";
 import cookies from "./cookies";
-const baseUrl = "http://localhost:5000";
+const baseUrl = process.env.REACT_APP_BASE_URL
 // This context provider is passed to any component requiring the context
 
 export const HubProvider = ({ children }) => {

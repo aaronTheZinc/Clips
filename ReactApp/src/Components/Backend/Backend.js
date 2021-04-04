@@ -4,8 +4,8 @@ import { AppState as Socket } from "../State/UserProvider";
 import {appState} from '../State/Context'
 import Cookies from '../State/cookies'
 const io = require("socket.io-client");
-const ENDPOINT = "http://localhost:5000";
-const socket = io(ENDPOINT);
+const baseUrl = process.env.BASE_URL
+const socket = io(baseUrl);
 
 const readCookies = () => Cookies.cookies.readToken()
 

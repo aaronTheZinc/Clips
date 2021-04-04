@@ -2,6 +2,7 @@ const router = require("express").Router();
 const database = require("../Database/index");
 const { authenticate } = require("./auth");
 const tokenHandler = require("../Token/index");
+
 const cors = require("cors");
 router.use((req, res, next) =>
   authenticate({
@@ -26,4 +27,10 @@ router.get("/friends", async(req, res) => {
   });
 });
 
+// add friend
+
+router.post('/addfriend' ,(req, res) => {
+  const {data:{username}} =  res.body;
+   const 
+})
 module.exports = router;

@@ -30,7 +30,9 @@ router.get("/friends", async(req, res) => {
 // add friend
 
 router.post('/addfriend' ,(req, res) => {
-  const {data:{username}} =  res.body;
-   const 
+  const {body} =  req.body
+  const {data:{username}} = tokenHandler.getData(body)
+   const db = new database(username);
+    const didSend = db.sendFriendRequest()
 })
 module.exports = router;

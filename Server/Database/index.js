@@ -8,7 +8,16 @@ class database {
     const userExist = await this.userExist(to);
     if (userExist) {
       //send request
-      fs.collection("users").doc(to).update({friendRequest: fs.arrayUnion(from)})
+      const pastQue = await this.get('users', to)
+        const {friendsQue} = pastQue
+      fs.collection("users").doc(to).update({friendsQue: friendsQue.push(to)});
+      return {
+        isValid: true
+      }
+    } else {
+      return {
+        isValid: false
+      }
     }
   };
 

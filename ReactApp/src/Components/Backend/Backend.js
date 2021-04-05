@@ -31,7 +31,8 @@ const SocketComponent = () => {
   return <></>;
 };
 export const SocketProvider = ({ children }) => {
-    const { dispatch } = useContext(appState);
+    const { state, dispatch } = useContext(appState);
+    console.log('state -- ', state)
     useEffect(() => {
     const token = readCookies();
     if (token) {

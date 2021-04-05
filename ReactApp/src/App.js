@@ -4,7 +4,7 @@ import './App.css';
 import Main from "./Components/UI/Main/index"
 import Home from './Components/UI/Home/index'
 import './Components/UI/Theme/index.css'
-import {appState as AppState} from './Components/State/Context'
+import {AppState} from './Components/State/UserProvider'
 import  {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +17,7 @@ function App() {
     switch(action.type) {
       case "uid":
             state.uid = action.value
+
       default:
         return state
     }
@@ -25,9 +26,9 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState )
   return (
     <div className="App">
-      <AppState.Provider value={{state, dispatch}}>
+      <AppState>
       <Main/>
-      </AppState.Provider>
+      </AppState>
      
         
     </div>

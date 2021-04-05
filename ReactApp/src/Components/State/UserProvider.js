@@ -51,6 +51,7 @@ export const AppState = ({ children }) => {
     auth: {
       uid: "",
       isAuth: false,
+      username: ''
     },
   };
   const reducer = (state, action) => {
@@ -64,6 +65,7 @@ export const AppState = ({ children }) => {
           },
         };
       case 'setUsername': 
+      alert('username change')
         return {
           auth: {
             username: action.value
@@ -72,7 +74,7 @@ export const AppState = ({ children }) => {
       case 'isAuth':
         return {
           auth: {
-            isAuth: false
+            isAuth: true
           }
         }  
       case "logout":

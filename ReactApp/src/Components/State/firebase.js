@@ -31,7 +31,7 @@ export const doCreateUserWithEmailAndPassword = (
       registerUser({
         data: { email: email, username: username, uid: client.user.uid},
       });
-      // next();
+      next();
     })
     .catch((error) => {
       swal("Uh oh!", error.code, "error");
